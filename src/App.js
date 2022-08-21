@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { WEATHER_API_KEY, WEATHER_API_URL } from './api';
 import './App.css';
 import Search from './components/search/search';
-const Currentweather = require('../src/components/search/current-weather/current-weather');
-const { WEATHER_API_URL, WEATHER_API_KEY }  = require('./api');
+const Forecast = require('./components/forecast/forecast');
+const CurrentWeather = require('./components/search/current-weather/current-weather');
+const Forecast = require('./components/forecast/forecast');
+
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -31,7 +33,8 @@ function App() {
   return (
     <div className="container">
       <Search onSearchChange = {handleOnSearchChange}/>
-      {currentWeather && <Currentweather data={currentWeather}/>}
+      {currentWeather && <CurrentWeather data={currentWeather}/>}
+      {forecast && <Forecast data={forecast}/>}
     </div>
   );
 }
