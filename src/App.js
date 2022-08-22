@@ -4,26 +4,25 @@ import './App.css';
 import Search from './components/search/search';
 const Forecast = require('./components/forecast/forecast');
 const CurrentWeather = require('./components/search/current-weather/current-weather');
-const Forecast = require('./components/forecast/forecast');
 
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
-  const [forecast, setForeCast] = useState(null);
+  const [forecast, setForecast] = useState(null);
 
   const handleOnSearchChange = (searchData) => {
-    const [lat, lon] = searchData.value.split(" ")
+    const [lat, lon] = searchData.value.split(" ");
 
     const currentWeatherFetch = fetch(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
-    const foreCastFetch = fetch(`${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
+    const forecastFetch = fetch(`${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
 
-    Promise.all([currentWeatherFetch, foreCastFetch])
+    Promise.all([currentWeatherFetch, forecastFetch])
     .then(async (response) => {
       const weatherResponse = await response[0].json();
-      const foreCastResponse = await response[1].json();
+      const forecastResponse = await response[1].json();
 
       setCurrentWeather({city: searchData.label, ...weatherResponse});
-      setForeCast({city: searchData.label, ...foreCastResponse});
+      setForecast({city: searchData.label, ...forecastResponse});
     })
     .catch((err) => console.log(err));
   }

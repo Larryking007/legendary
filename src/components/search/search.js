@@ -1,4 +1,4 @@
-const { useState } = require("react");
+const {React, useState } = require("react");
 const { AsyncPaginate } = require("react-select-async-paginate");
 const { GEO_API_URL, geoApiOptions } = require("../../api");
 
@@ -31,7 +31,7 @@ const Search = ({ onSearchChange }) => {
 
   return (
     <AsyncPaginate
-      placeholder="Search for cities"
+      placeholder="Search for city"
       debounceTimeout={600}
       value={search}
       onChange={handleOnChange}
